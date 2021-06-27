@@ -103,27 +103,33 @@ autoMusicButon.addEventListener("click", () => {
 
 //Theme1 is here:-
 const theme1Background = "#260909";
+const theme1BackgroundLow = "#26090979";
 const theme1Text = "#ffff";
 
 //Theme2 is here:-
 const theme2Background = "rgb(38, 61, 47)";
+const theme2BackgroundLow = "rgba(38, 61, 47, 0.568)";
 const theme2Text = "#00e91f";
 
 //Theme3 is here:-
 
 const theme3Background = "#091921";
+const theme3BackgroundLow = "#09192179";
 const theme3Text = "#00fff1";
 
 const changeTheme = (theme) => {
   let root = document.documentElement;
   if (theme == "theme1") {
     root.style.setProperty("--background", theme1Background);
+    root.style.setProperty("--backgroundLow", theme1BackgroundLow);
     root.style.setProperty("--text", theme1Text);
   } else if (theme == "theme2") {
     root.style.setProperty("--background", theme2Background);
+    root.style.setProperty("--backgroundLow", theme2BackgroundLow);
     root.style.setProperty("--text", theme2Text);
   } else if (theme == "theme3") {
     root.style.setProperty("--background", theme3Background);
+    root.style.setProperty("--backgroundLow", theme3BackgroundLow);
     root.style.setProperty("--text", theme3Text);
   }
 };
@@ -156,7 +162,12 @@ themeChanger.addEventListener("click", (e) => {
 
 const backgroundChange =(imageSrcc)=>{
     let contBack = document.getElementsByClassName('container')[0].style;
-    contBack.background = `url(${imageSrcc})`;
+    
+    let bgColor = getComputedStyle(document.documentElement).getPropertyValue("--backgroundLow");
+
+    contBack.background = `linear-gradient(300deg,${bgColor},${bgColor}) ,url(${imageSrcc})`;
+    contBack.backgroundSize = 'cover';
+    contBack.backgroundPosition = 'center';
 }
 
 //API Call 
@@ -179,6 +190,11 @@ const apiCall = ()=>{
         .catch(error => console.log(error))
 }
 apiCall();
+
+const backgroundChanger = document.getElementById("extraButtom3");
+backgroundChanger.addEventListener("click",{
+    apiCall();
+})
 
 
 

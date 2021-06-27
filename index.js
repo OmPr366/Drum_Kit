@@ -191,8 +191,8 @@ const apiCall = ()=>{
 }
 apiCall();
 
-const backgroundChanger = document.getElementById("extraButtom3");
-backgroundChanger.addEventListener("click",{
+const backChanger = document.getElementById("extraButtom3");
+backChanger.addEventListener("click",()=>{
     apiCall();
 })
 
